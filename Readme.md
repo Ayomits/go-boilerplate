@@ -1,0 +1,37 @@
+# Go boileplate
+
+Я сделал небольшую cli для генерации базового бойлеплейта для 2х популярных фреймворков: <br>
+1. Gin
+2. Fiber
+
+В планах добавить возможность генерировать контроллеры и сервисы <br>
+
+По факту всё это решается сниппетами, но чо бы и нет : )
+
+## Установить и попробовать
+
+Есть 2 способа:
+
+1. Git
+2. Из go
+
+### Git
+
+```bash
+git clone https://github.com/Ayomits/go-boilerplate.git
+cd go-boilerplate
+go build -o ./gb ./main.go
+```
+
+### Go
+
+```bash
+go install github.com/Ayomits/go-boilerplate
+```
+
+Хз почему, но у меня команды от гошки не ворк нормально, поэтому если вы на линуксе сделайте так:
+
+```bash
+alias gb="~/go/bin/gb"
+```
+

@@ -11,7 +11,9 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "gb",
-	Short: "Go boilerplate. Allows generate gin and fiber projects boilerplate",
+	Short: "Небольшая cli для создания бойлеплейта для двух фреймворков на го",
+	
+
 }
 
 func Execute() {

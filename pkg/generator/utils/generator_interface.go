@@ -1,4 +1,4 @@
-package generator
+package utils
 
 type ProjectGenerator interface {
 	Generate()

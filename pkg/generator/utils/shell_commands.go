@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 func RunInPath(path string, cmd *exec.Cmd) error {
@@ -36,6 +37,29 @@ func CreateDir(dir string) *exec.Cmd {
 
 func TouchFile(file string) *exec.Cmd {
 	return exec.Command("touch", file)
+}
+
+func RemoveFile(path string) error {
+	return os.RemoveAll(path)
+}
+
+func MoveFiles(from, to string) error {
+	if err := os.MkdirAll(to, 0755); err != nil {
+        return err
+    }
+
+	entries, err := os.ReadDir(from)
+    if err != nil {
+        return err
+    }
+    for _, entry := range entries {
+        srcPath := filepath.Join(from, entry.Name())
+        dstPath := filepath.Join(to, entry.Name())
+        if err := os.Rename(srcPath, dstPath); err != nil {
+            return err
+        }
+    }
+    return nil
 }
 
 func WriteFile(path string, input string) {

@@ -9,5 +9,5 @@ func NewFiberProjectGenerator() utils.ProjectGenerator {
 }
 
 func (g *GenerateFiberProject) Generate() {
-	utils.GenerateTemplate(utils.FiberType)
+	utils.GeneratTemplateSafe(utils.FiberType)
 }

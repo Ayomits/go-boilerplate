@@ -9,5 +9,5 @@ func NewGinProjectGenerator() utils.ProjectGenerator {
 }
 
 func (g *GenerateGinProject) Generate() {
-	utils.GenerateTemplate(utils.GinType)
+	utils.GeneratTemplateSafe(utils.GinType)
 }

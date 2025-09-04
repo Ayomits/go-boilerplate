@@ -66,19 +66,23 @@ func InitPackages(path string, type_ string) {
 }
 
 func GetPackagesListByType(type_ string) []string {
+	common := []string{
+		"github.com/go-playground/validator/v10",
+	}
 	switch type_ {
 	case GinType:
-		return []string{
+		gin := []string{
 			"github.com/gin-gonic/gin",
 		}
+		common = append(common, gin...)
 	case FiberType:
-		return []string{
+		fiber := []string{
 			"github.com/gofiber/fiber/v2",
-			"github.com/go-playground/validator/v10",
 		}
+		common = append(common, fiber...)
 	}
 
-	return []string{}
+	return common
 }
 
 func InitDirectoryStructure(path string) {
@@ -90,6 +94,9 @@ func InitDirectoryStructure(path string) {
 		"internal/controllers",
 		"internal/models",
 		"internal/services",
+		"internal/services/validators",
+		"internal/dtos",
+		"internal/responses",
 	}
 
 	for _, dir := range directories {

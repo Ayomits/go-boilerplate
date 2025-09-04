@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -12,8 +9,6 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "gb",
 	Short: "Небольшая cli для создания бойлеплейта для двух фреймворков на го",
-	
-
 }
 
 func Execute() {

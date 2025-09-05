@@ -55,6 +55,9 @@ func GeneratTemplateSafe(type_ string) {
 		os.Exit(1)
 		return
 	}
+
+	RunInPath(*relativePath, GoModTidy())
+	RunInPath(*relativePath, GoModVendor())
 }
 
 func GenerateTemplateAtomarity(type_ string, path, name string) error {
@@ -72,7 +75,6 @@ func GenerateTemplateAtomarity(type_ string, path, name string) error {
 	if err != nil {
 		return err
 	}
-	InitPackages(path, type_)
 	return nil
 }
 
@@ -106,6 +108,7 @@ func InitDirectoryStructure(path string) error {
 		"internal/controllers",
 		"internal/models",
 		"internal/services",
+		"internal/repositories",
 		"internal/services/validators",
 		"internal/dtos",
 		"internal/responses",

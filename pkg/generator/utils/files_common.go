@@ -12,7 +12,7 @@ func NewMainFile(pkg string) string {
 		fmt.Sprintf(`import "%s/internal/app"`, pkg),
 		"",
 		"func main() {",
-		"\tapp.RunApp()",
+		"\tapp.Run()",
 		"}",
 	}
 

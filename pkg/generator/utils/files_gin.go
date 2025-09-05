@@ -11,7 +11,7 @@ func NewGinAppFile() string {
 		"",
 		`import "github.com/gin-gonic/gin"`,
 		"",
-		"func RunApp() {",
+		"func Run() {",
 		"\tapp := gin.Default()",
 		"\t",
 		"\t// define your routes here",

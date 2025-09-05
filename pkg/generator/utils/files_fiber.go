@@ -11,7 +11,7 @@ func NewFiberAppFile() string {
 		"",
 		`import "github.com/gofiber/fiber/v2"`,
 		"",
-		"func RunApp() {",
+		"func Run() {",
 		"\tapp := fiber.New()",
 		"",
 		"\t// define your routes here",

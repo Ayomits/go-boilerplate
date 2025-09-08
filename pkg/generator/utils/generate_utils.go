@@ -7,7 +7,6 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
-	"time"
 )
 
 func GeneratTemplateSafe(type_ string) {
@@ -19,39 +18,18 @@ func GeneratTemplateSafe(type_ string) {
 	fmt.Println("Теперь введите название вашего проекта: ")
 	fmt.Scan(&name)
 
-	tmpPath, err := VerifyPath(filepath.Join(os.TempDir(), fmt.Sprintf("%s_%s", name, fmt.Sprint(time.Now().Unix()))))
-
-	if err != nil {
-		fmt.Printf("Неудалось создать шаблон проекта: %v", err)
-		os.Exit(1)
-		return
-	}
-
-	err = GenerateTemplateAtomarity(type_, *tmpPath, name)
-
-	if err != nil {
-		fmt.Printf("Неудалось создать шаблон проекта: %v", err)
-		RemoveFile(*tmpPath)
-		os.Exit(1)
-		return
-	}
-
 	relativePath, err := VerifyPath(path)
 
-	fmt.Println(*relativePath)
-
 	if err != nil {
-		fmt.Printf("Не удалось верефицировать путь к шаблону: %v\n", err)
-		RemoveFile(*tmpPath)
+		fmt.Printf("Неудалось создать шаблон проекта: %v", err)
 		os.Exit(1)
 		return
 	}
 
-	err = MoveFiles(*tmpPath, fmt.Sprintf(`%s/`, *relativePath))
+	err = generateTemplate(type_, *relativePath, name)
 
 	if err != nil {
 		fmt.Printf("Не удалось переместить шаблон: %v\n", err)
-		RemoveFile(*tmpPath)
 		os.Exit(1)
 		return
 	}
@@ -60,7 +38,7 @@ func GeneratTemplateSafe(type_ string) {
 	RunInPath(*relativePath, GoModVendor())
 }
 
-func GenerateTemplateAtomarity(type_ string, path, name string) error {
+func generateTemplate(type_ string, path, name string) error {
 	name = resolveName(name)
 
 	err := RunInPath(path, GoModInit(name))
